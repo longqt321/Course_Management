@@ -1,0 +1,36 @@
+﻿@model List<asp_project.Models.Student>
+@{
+}
+
+<h3>Index</h3>
+<h2>Danh sách sinh viên</h2>
+<a href="/Student/Create">Thêm mới</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Họ và tên</th>
+            <th>Tên tài khoản</th>
+            <th>Email</th>
+            <th>Số điện thoại</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.Id</td>
+                <td>@s.LastName @s.FirstName</td>
+                <td>@s.Username</td>
+                <td>@s.Email</td>
+                <td>@s.PhoneNumber</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@s.Id">Chi tiết</a>
+                    <a asp-action="Edit" asp-route-id="@s.Id">Sửa</a>
+                    <a asp-action="Delete" asp-route-id="@s.Id">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
