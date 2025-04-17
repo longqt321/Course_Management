@@ -11,6 +11,7 @@
             <th>ID</th>
             <th>Họ và tên</th>
             <th>Tên tài khoản</th>
+            <th>Ngày sinh</th>
             <th>Email</th>
             <th>Số điện thoại</th>
             <th>Thao tác</th>
@@ -23,6 +24,7 @@
                 <td>@s.Id</td>
                 <td>@s.LastName @s.FirstName</td>
                 <td>@s.Username</td>
+				<td>@s.BirthDay.ToString("dd/MM/yyyy")</td>
                 <td>@s.Email</td>
                 <td>@s.PhoneNumber</td>
                 <td>

@@ -25,6 +25,7 @@ namespace asp_project.Controllers
 
         // CREATE - POST: Xử lý dữ liệu từ form gửi về
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Student student)
         {
             if (ModelState.IsValid)
@@ -37,20 +38,22 @@ namespace asp_project.Controllers
         }
 
         // UPDATE - GET: Hiển thị form sửa
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var student = context.Students.Find(id);
+            var student = await context.Students.FindAsync(id);
+            if (student == null) return NotFound();
             return View(student);
         }
 
         // UPDATE - POST: Xử lý dữ liệu sửa
         [HttpPost]
-        public IActionResult Edit(Student student)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Student student)
         {
             if (ModelState.IsValid)
             {
                 context.Students.Update(student);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(student);
@@ -66,6 +69,7 @@ namespace asp_project.Controllers
 
         // DELETE - POST: Xác nhận xóa
         [HttpPost, ActionName("DeleteConfirm")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirm(int id)
         {
             var student = await context.Students.FindAsync(id);
@@ -78,9 +82,10 @@ namespace asp_project.Controllers
         }
 
         // DETAILS
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            var student = context.Students.Find(id);
+            var student = await context.Students.FindAsync(id);
+            if (student == null) return NotFound();
             return View(student);
         }
     }
