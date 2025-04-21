@@ -2,13 +2,13 @@
 
 namespace asp_project.Models
 {
-    public class Student
+    public class User
     {
-        public Student()
+        public User()
         {
         }
 
-        public Student(int id, string username, string password, string firstName, string lastName, string email, string phoneNumber, DateTime birthDay)
+        public User(int id, string username, string password, string firstName, string lastName, string email, string phoneNumber, DateTime birthDay, Role role)
         {
             Id = id;
             Username = username;
@@ -18,6 +18,7 @@ namespace asp_project.Models
             Email = email;
             PhoneNumber = phoneNumber;
             BirthDay = birthDay;
+            Role = role;
         }
 
         [Key]
@@ -26,6 +27,7 @@ namespace asp_project.Models
         [Required(ErrorMessage = "Vui lòng nhập tên đăng nhập")]
         public  String Username { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
+        [MaxLength(64)] 
         public  String Password { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập tên của bạn")]
         public  String FirstName { get; set; }
@@ -41,8 +43,17 @@ namespace asp_project.Models
 
         [Required(ErrorMessage = "Vui lòng nhập ngày sinh")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime BirthDay { get; set; }
+        
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
+        [Required(ErrorMessage = "Vui lòng chọn quyền hạn")]
+        public Role Role { get; set; }
+    }
+    public enum Role
+    {
+        Admin,
+        Student,
+        Teacher
     }
 }

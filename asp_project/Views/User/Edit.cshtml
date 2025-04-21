@@ -1,4 +1,4 @@
-﻿@model asp_project.Models.Student
+﻿@model asp_project.Models.User
 
 <h2>Chỉnh sửa người dùng</h2>
 
@@ -6,27 +6,31 @@
     <input type="hidden" asp-for="Id" />
 
     <div class="form-group">
-        <label asp-for="Username"></label>
+        <label asp-for="Username">Tài khoản: </label>
         <input asp-for="Username" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="Password"></label>
+        <label asp-for="Password">Mật khẩu: </label>
         <input asp-for="Password" class="form-control" type="password" />
     </div>
     <div class="form-group">
-        <label asp-for="FirstName"></label>
+        <label asp-for="FirstName">Họ: </label>
         <input asp-for="FirstName" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="LastName"></label>
+        <label asp-for="LastName">Tên: </label>
         <input asp-for="LastName" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="Email"></label>
+		<label asp-for="BirthDay">Ngày sinh: </label>
+		<input asp-for="BirthDay" class="form-control" type="date" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email">Email: </label>
         <input asp-for="Email" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="PhoneNumber"></label>
+        <label asp-for="PhoneNumber">Số điện thoại: </label>
         <input asp-for="PhoneNumber" class="form-control" />
     </div>
     <button type="submit" class="btn btn-success">Lưu</button>

@@ -1,0 +1,19 @@
+﻿@using System.Security.Claims
+@{
+    ViewData["Title"] = "Không có quyền truy cập";
+    var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value ?? "Không xác định";
+}
+
+<div class="container mt-5">
+    <div class="alert alert-danger text-center">
+        <h2 class="mb-4">🚫 Truy cập bị từ chối</h2>
+
+        <p><strong>Tài khoản của bạn:</strong> @User.Identity.Name</p>
+        <p><strong>Quyền hiện tại:</strong> <span class="badge bg-primary">@userRole</span></p>
+
+        <hr class="my-4" />
+
+        <p class="lead">Bạn không có quyền truy cập vào trang này.</p>
+        <a asp-controller="Home" asp-action="Index">Quay về trang chủ</a>
+    </div>
+</div>

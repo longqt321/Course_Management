@@ -4,17 +4,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace asp_project.Controllers
 {
-    public class StudentController : Controller
+    public class TeacherController : Controller
     {
         private readonly MyAppContext context;
-        public StudentController(MyAppContext _context) {
+        public TeacherController(MyAppContext _context)
+        {
             this.context = _context;
         }
         public async Task<IActionResult> Index()
         {
-            var students = await context.Users.Where(user => user.Role == Models.Role.Student)
+            var teachers = await context.Users.Where(user => user.Role == Models.Role.Teacher)
                 .ToListAsync();
-            return View(students);
+            return View(teachers);
         }
     }
 }

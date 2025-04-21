@@ -3,7 +3,7 @@
 }
 
 <h3>Index</h3>
-<h2>Danh sách sinh viên</h2>
+<h2>Danh sách giáo viên</h2>
 <table class="table">
     <thead>
         <tr>
@@ -27,9 +27,9 @@
                 <td>@s.Email</td>
                 <td>@s.PhoneNumber</td>
                 <td>
-                    <a asp-controller="User" asp-action="Details" asp-route-id="@s.Id">Chi tiết</a>
-                    <a asp-controller="User" asp-action="Edit" asp-route-id="@s.Id">Sửa</a>
-                    <a asp-controller="User" asp-action="Delete" asp-route-id="@s.Id">Xóa</a>
+                    <a asp-controller="Teacher" asp-action="Details" asp-route-id="@s.Id">Chi tiết</a>
+                    <a asp-controller="Teacher" asp-action="Edit" asp-route-id="@s.Id">Sửa</a>
+                    <a asp-controller="Teacher" asp-action="Delete" asp-route-id="@s.Id">Xóa</a>
                 </td>
             </tr>
         }

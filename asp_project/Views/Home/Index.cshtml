@@ -1,9 +1,23 @@
-﻿@model asp_project.Models.Student
+﻿@model asp_project.Models.User
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Trang chính";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core @Model.Id</a>.</p>
-</div>
+<h2>Chào mừng!</h2>
+
+@if (User.IsInRole("Student"))
+{
+    <p>Chào bạn học viên. Đây là trang dành cho học viên.</p>
+}
+else if (User.IsInRole("Teacher"))
+{
+    <p>Xin chào giảng viên. Đây là khu vực dành cho giảng viên.</p>
+}
+else if (User.IsInRole("Admin"))
+{
+    <p>Xin chào quản trị viên. Đây là bảng điều khiển dành cho admin.</p>
+}
+else
+{
+    <p>Vai trò không xác định. Vui lòng đăng nhập lại.</p>
+}

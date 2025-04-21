@@ -8,6 +8,20 @@ namespace asp_project.Data
         public MyAppContext(DbContextOptions<MyAppContext> options) : base(options)
         {
         }
-        public DbSet<Student> Students { get; set; }
+        public DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .Property(u => u.Role)
+                .HasConversion<String>();
+            modelBuilder.Entity<User>()
+                .Property(u => u.Password)
+                .IsRequired()
+                .HasMaxLength(64);
+
+
+        }
+
     }
 }

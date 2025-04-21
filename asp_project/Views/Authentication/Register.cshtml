@@ -1,11 +1,8 @@
-﻿@model asp_project.Models.Student
-
-<h2>Thêm người dùng mới</h2>
-
-<form asp-action="Create" method="post">
+﻿@model asp_project.Models.User
+<form asp-action="Register" method="post">
     <div class="form-group">
         <label asp-for="Username">Tên đăng nhập</label>
-        <input asp-for="Username" class="form-control" />
+        <input asp-for="Username" class="form-control"/>
         <span asp-validation-for="Username" class="text-danger"></span>
     </div>
     <div class="form-group">
@@ -25,7 +22,7 @@
     </div>
     <div>
         <label asp-for="BirthDay">Ngày sinh</label>
-        <input asp-for="BirthDay" class="form-control" type="date"/>
+        <input asp-for="BirthDay" class="form-control" type="date" />
         <span asp-validation-for="BirthDay" class="text-danger"></span>
     </div>
     <div class="form-group">
@@ -38,6 +35,39 @@
         <input asp-for="PhoneNumber" class="form-control" />
         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary">Tạo</button>
+   
+     <label asp-for="Role">Chọn vai trò:</label>
+    <div>
+        <input name="Role" asp-for="Role" type="radio" value="Student" checked/> Học viên
+        <input name="Role" asp-for="Role" type="radio" value="Teacher" /> Giáo viên
+        <input name="Role" asp-for="Role" type="radio" value="Admin" /> Quản trị viên
+    </div>
+
+    <div><input id="RoleKey" name="RoleKey" type="password"/></div>
+     <span asp-validation-for="Role" class="text-danger"></span>
+
+    <button type="submit" class="btn btn-primary" style="display:block;">Đăng ký</button>
 </form>
-<a asp-action="Index">Quay lại</a>
+
+<a asp-action="Login">Chuyển sang đăng nhập</a>
+
+@section Scripts {
+    <script>
+        function toggleKeyField() {
+            const role = document.querySelector('input[name="Role"]:checked').value;
+			const input = document.getElementById("RoleKey");
+            if (role === "Admin" || role === "Teacher") {
+                input.type = "password";
+            } else {
+                input.type = "hidden";
+            }
+        }
+
+        document.querySelectorAll('input[name="Role"]').forEach(rb => {
+            rb.addEventListener("change", toggleKeyField);
+        });
+
+        // Gọi 1 lần khi load trang
+        toggleKeyField();
+    </script>
+}

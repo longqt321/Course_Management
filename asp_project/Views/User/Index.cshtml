@@ -3,7 +3,7 @@
 }
 
 <h3>Index</h3>
-<h2>Danh sách sinh viên</h2>
+<h2>Danh sách tài khoản</h2>
 <table class="table">
     <thead>
         <tr>
@@ -11,8 +11,10 @@
             <th>Họ và tên</th>
             <th>Tên tài khoản</th>
             <th>Ngày sinh</th>
+            <th>Vai trò</th>
             <th>Email</th>
             <th>Số điện thoại</th>
+            <th>Thời gian tạo</th>
             <th>Thao tác</th>
         </tr>
     </thead>
@@ -24,12 +26,14 @@
                 <td>@s.LastName @s.FirstName</td>
                 <td>@s.Username</td>
 				<td>@s.BirthDay.ToString("dd/MM/yyyy")</td>
+                <td>@s.Role</td>
                 <td>@s.Email</td>
                 <td>@s.PhoneNumber</td>
+				<td>@s.CreatedAt.ToString("hh:mm:ss dd/MM/yyyy")</td>
                 <td>
-                    <a asp-controller="User" asp-action="Details" asp-route-id="@s.Id">Chi tiết</a>
-                    <a asp-controller="User" asp-action="Edit" asp-route-id="@s.Id">Sửa</a>
-                    <a asp-controller="User" asp-action="Delete" asp-route-id="@s.Id">Xóa</a>
+                    <a asp-action="Details" asp-route-id="@s.Id">Chi tiết</a>
+                    <a asp-action="Edit" asp-route-id="@s.Id">Sửa</a>
+                    <a asp-action="Delete" asp-route-id="@s.Id">Xóa</a>
                 </td>
             </tr>
         }

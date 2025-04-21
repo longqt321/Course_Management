@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using asp_project.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace asp_project.Controllers
@@ -12,14 +13,13 @@ namespace asp_project.Controllers
         {
             _logger = logger;
         }
-
-        public IActionResult Index(int value)
+        [Authorize]
+        public IActionResult Index()
         {
-            Student s = new Student();
-            s.Id = 1;
-            return Content(value.ToString());
+            
+            return View();
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Privacy()
         {
             return View();
