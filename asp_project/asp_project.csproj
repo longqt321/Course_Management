@@ -16,4 +16,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\CourseEnrollment\" />
+    <Folder Include="Images\" />
+  </ItemGroup>
+
 </Project>

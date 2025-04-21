@@ -4,8 +4,15 @@ namespace asp_project.Models
 {
     public class User
     {
+        private User input;
+
         public User()
         {
+        }
+
+        public User(User input)
+        {
+            this.input = input;
         }
 
         public User(int id, string username, string password, string firstName, string lastName, string email, string phoneNumber, DateTime birthDay, Role role)
@@ -49,6 +56,14 @@ namespace asp_project.Models
 
         [Required(ErrorMessage = "Vui lòng chọn quyền hạn")]
         public Role Role { get; set; }
+
+        public string FullName
+        {
+            get
+            {
+                return $"{LastName} {FirstName}";
+            }
+        }
     }
     public enum Role
     {

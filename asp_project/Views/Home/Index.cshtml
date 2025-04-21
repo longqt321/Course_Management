@@ -7,7 +7,13 @@
 
 @if (User.IsInRole("Student"))
 {
-    <p>Chào bạn học viên. Đây là trang dành cho học viên.</p>
+    <p>Chào bạn học viên @User?.Identity?.Name. Đây là trang dành cho học viên.</p>
+    <div class="text-center mb-4">
+        <h2 class="fs-4">Khóa học nổi bật</h2>
+        <p class="subtitle">Khám phá những khóa học được yêu thích nhất</p>
+        <div class="row row-cols-1 row-cols-md-3 g-4"></div>
+    </div>
+
 }
 else if (User.IsInRole("Teacher"))
 {

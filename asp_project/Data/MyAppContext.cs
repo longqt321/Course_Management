@@ -9,6 +9,8 @@ namespace asp_project.Data
         {
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<CourseEnrollment> CourseEnrollments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -20,7 +22,19 @@ namespace asp_project.Data
                 .IsRequired()
                 .HasMaxLength(64);
 
+            // Tắt cascade delete cho quan hệ User - CourseEnrollment -> Không cho xóa User khi có CourseEnrollment
+            modelBuilder.Entity<CourseEnrollment>()
+                .HasOne(ce => ce.User)
+                .WithMany()
+                .HasForeignKey(ce => ce.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
+            // Tắt cascade delete cho quan hệ Course - Teacher
+            modelBuilder.Entity<Course>()
+                .HasOne(c => c.Teacher)
+                .WithMany()
+                .HasForeignKey(c => c.TeacherId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
     }

@@ -1,0 +1,41 @@
+﻿@model List<asp_project.Models.Course>
+<h2>Danh sách khóa học</h2>
+<div>
+    <a asp-action="Create" class="btn btn-primary">Thêm khóa học</a></div>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-info">@TempData["Message"]</div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tên</th>
+            <th>Ngày bắt đầu</th>
+            <th>Giá</th>
+            <th>Giảng viên</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.StartDate.ToShortDateString()</td>
+                <td>@item.Fee.ToString("N0")</td>
+                <td>@item.Teacher?.FirstName @item.Teacher?.LastName</td>
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Sửa</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Xóa</a>
+                    }
+                    @if (User.IsInRole("Student"))
+                    {
+                        <a asp-action="Enroll" asp-route-id="@item.Id">Đăng ký</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
